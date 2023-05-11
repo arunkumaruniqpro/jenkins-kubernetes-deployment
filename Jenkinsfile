@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/Bravinsimiyu/jenkins-kubernetes-deployment.git'
+        git 'https://github.com/arunkumaruniqpro/jenkins-kubernetes-deployment.git'
       }
     }
 
@@ -19,19 +19,6 @@ pipeline {
       steps{
         script {
           dockerImage = docker.build dockerimagename
-        }
-      }
-    }
-
-    stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhub-credentials'
-           }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
-          }
         }
       }
     }
