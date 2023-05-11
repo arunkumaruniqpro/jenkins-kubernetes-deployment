@@ -1,28 +1,13 @@
 pipeline {
 
   environment {
-    dockerimagename = "bravinwasike/react-app"
+    dockerimagename = "bayesimpact/react-base"
     dockerImage = ""
   }
 
   agent { label 'kubeagent' }
 
   stages {
-
-    stage('Checkout Source') {
-      steps {
-        git branch: 'main', url: 'https://github.com/arunkumaruniqpro/jenkins-kubernetes-deployment.git'
-      }
-    }
-
-    stage('Build image') {
-      steps{
-        script {
-          dockerImage = docker.build dockerimagename
-        }
-      }
-    }
-
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
